@@ -5,7 +5,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 
 type ImageProps = {
     src: string,
-    name: string
+    name: string,
 }
 
 export default function Welcome() {
@@ -22,13 +22,15 @@ export default function Welcome() {
         return path === url;
     }
 
-    const images: ImageProps[] = [{
-        src: '/images/ChatGPT%20Image%209%20avr.%202025,%2013_04_32.png',
-        name: 'Spawn du serveur'
-    }, {
-        src: '/images/vogue-merry.jpg',
-        name: 'Vogue Merry',
-    }];
+    const images: ImageProps[] = [
+        {
+            src: '/images/ChatGPT%20Image%209%20avr.%202025,%2013_04_32.png',
+            name: 'Spawn du serveur'
+        }, {
+            src: '/images/vogue-merry.jpg',
+            name: 'Vogue Merry'
+        }
+    ];
 
     return (
         <section className={'min-h-screen flex flex-col font-roboto bg-amber-950'}>
@@ -62,14 +64,15 @@ export default function Welcome() {
                 </nav>
             </header>
             <main className={'grow container mx-auto text-white'}>
+                <h1>Page d'accueil</h1>
                 <section className={'grid grid-cols-2'}>
                     <p>Êtes vous passionnés par les animés et Minecraft ? Alors ce serveur est fait pour vous !</p>
                     <Carousel className={'w-3/4 mx-auto'}>
                         <CarouselContent>
                             {images.map((img, index) => (
-                                <CarouselItem>
-                                    <figure key={index} className={'relative h-full'}>
-                                        <img src={img.src} alt={img.name} className={"w-full h-full object-cover"}/>
+                                <CarouselItem key={index}>
+                                    <figure className={'relative h-full'}>
+                                        <img src={img.src} alt={img.name} className={'w-full h-full object-cover'}/>
                                         <figcaption className={'absolute bottom-0 left-0 right-0 bg-black/75 p-5'}>
                                             {img.name}
                                         </figcaption>
@@ -77,8 +80,8 @@ export default function Welcome() {
                                 </CarouselItem>
                             ))}
                         </CarouselContent>
-                        <CarouselNext className={'text-black'} />
-                        <CarouselPrevious className={'text-black'} />
+                        <CarouselNext className={'text-black cursor-pointer'} />
+                        <CarouselPrevious className={'text-black cursor-pointer'} />
                     </Carousel>
                 </section>
             </main>
