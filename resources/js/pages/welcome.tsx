@@ -55,7 +55,7 @@ export default function Welcome() {
                         <img src={'/images/burger-bar.svg'} alt={'Burger Bar'} className={'h-6.25'} />
                     </button>
                     <ul className={`${!showMenu && 'hidden'} md:hidden bg-white fixed top-0 right-0 bottom-0 left-0 flex flex-col
-                        justify-center items-center`} onClick={closeMenu}>
+                        justify-center items-center z-10`} onClick={closeMenu}>
                         <Button className={'bg-gray-300 active:bg-gray-400 absolute top-5 right-5'}>
                             <img src={'/images/croix.svg'} alt={'croix'} className={'w-6.25'} />
                         </Button>
@@ -63,9 +63,9 @@ export default function Welcome() {
                     </ul>
                 </nav>
             </header>
-            <main className={'grow container mx-auto text-white'}>
+            <main className={'grow container mx-auto text-white p-2 md:p-0 flex flex-col md:block gap-2'}>
                 <h1>Page d'accueil</h1>
-                <section className={'grid grid-cols-2'}>
+                <section className={'grid md:grid-cols-2 gap-2'}>
                     <p>Êtes vous passionnés par les animés et Minecraft ? Alors ce serveur est fait pour vous !</p>
                     <Carousel className={'w-3/4 mx-auto'}>
                         <CarouselContent>
