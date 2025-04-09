@@ -3,6 +3,11 @@ import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 
+type ImageProps = {
+    src: string,
+    name: string
+}
+
 export default function Welcome() {
 
     const [showMenu, setShowMenu] = useState(false);
@@ -17,7 +22,7 @@ export default function Welcome() {
         return path === url;
     }
 
-    const images = [{
+    const images: ImageProps[] = [{
         src: '/images/ChatGPT%20Image%209%20avr.%202025,%2013_04_32.png',
         name: 'Spawn du serveur'
     }, {
