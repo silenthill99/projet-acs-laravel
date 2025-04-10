@@ -15,6 +15,9 @@ export default function Welcome() {
     function closeMenu() {
         return setShowMenu(false);
     }
+    function openMenu() {
+        return setShowMenu(true);
+    }
 
     const { url } = usePage();
 
@@ -51,7 +54,7 @@ export default function Welcome() {
                     </ul>
 
                     {/*Menu mobile*/}
-                    <button className={'md:hidden p-5'} onClick={() => setShowMenu(true)}>
+                    <button className={'md:hidden p-5'} onClick={openMenu}>
                         <img src={'/images/burger-bar.svg'} alt={'Burger Bar'} className={'h-6.25'} />
                     </button>
                     <ul className={`${!showMenu && 'hidden'} md:hidden bg-white fixed top-0 right-0 bottom-0 left-0 flex flex-col
