@@ -1,4 +1,4 @@
-import { Head, Link, usePage } from '@inertiajs/react';
+import { Head, Link } from '@inertiajs/react';
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
@@ -17,12 +17,6 @@ export default function Welcome() {
     }
     function openMenu() {
         return setShowMenu(true);
-    }
-
-    const { url } = usePage();
-
-    function isActive(path: string) {
-        return path === url;
     }
 
     const images: ImageProps[] = [
@@ -49,7 +43,7 @@ export default function Welcome() {
                     {/*Menu classique*/}
                     <ul className={'hidden md:flex gap-3 text-xl'}>
                         <li><Link href={route('home')}
-                                  className={`hover:underline ${isActive('/') && 'border-x border-black px-2'}`}>Accueil</Link>
+                                  className={`hover:underline`}>Accueil</Link>
                         </li>
                     </ul>
 
