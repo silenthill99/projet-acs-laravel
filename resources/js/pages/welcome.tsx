@@ -61,10 +61,12 @@ export default function Welcome() {
                 </nav>
             </header>
             <main className={'grow container mx-auto text-white p-2 md:p-0 flex flex-col md:block gap-2'}>
-                <h1>Page d'accueil</h1>
-                <section className={'grid md:grid-cols-2 gap-2'}>
-                    <p>Êtes vous passionnés par les animés et Minecraft ? Alors ce serveur est fait pour vous !</p>
-                    <Carousel className={'w-3/4 mx-auto'}>
+                <section className={'grid md:grid-cols-2 gap-2 mt-5 md:mt-20'}>
+                    <div className={"flex flex-col justify-center gap-10 md:gap-0"}>
+                        <h1 className={"md:pt-0"}>Page d'accueil</h1>
+                        <p className={"grow flex items-center"}>Êtes vous passionnés par les animés et Minecraft ? Alors ce serveur est fait pour vous !</p>
+                    </div>
+                    <Carousel className={'w-3/4 mx-auto py-30 md:py-0'}>
                         <CarouselContent>
                             {images.map((img, index) => (
                                 <CarouselItem key={index}>
