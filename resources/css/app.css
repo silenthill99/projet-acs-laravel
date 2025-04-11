@@ -78,7 +78,7 @@
         border-color: var(--color-gray-200, currentColor);
     }
     h1 {
-        @apply text-xl md:text-5xl font-semibold md:py-5;
+        @apply text-xl md:text-5xl font-semibold py-2 md:py-5;
     }
 }
 

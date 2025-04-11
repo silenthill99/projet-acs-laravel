@@ -48,10 +48,10 @@ export default function Welcome() {
                 <link rel="preconnect" href="https://fonts.bunny.net" />
                 <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
             </Head>
-            <header className={'min-h-12.5 bg-gray-300'}>
+            <header className={'min-h-12.5 bg-gray-300 p-2'}>
                 {/*Menu de navigation*/}
                 <nav className={'container mx-auto flex items-center justify-between'}>
-                    <h1 className={'ps-2 text-center'}>MineAnime</h1>
+                    <h1 className={'text-center'}>MineAnime</h1>
 
                     {/*Menu classique*/}
                     <ul className={'hidden gap-3 text-xl md:flex'}>
@@ -80,36 +80,38 @@ export default function Welcome() {
                 </nav>
             </header>
             <main className={'flex grow flex-col gap-2 text-white md:block'}>
-                <section className={'container mx-auto my-5 grid gap-2 p-2 md:my-20 md:grid-cols-2 md:p-0'}>
+                <section className={'container mx-auto my-5 grid gap-2 md:my-20 md:grid-cols-2 p-2'}>
                     <div className={'flex flex-col justify-center gap-10 md:gap-0'}>
-                        <h1 className="p-4">Page d'accueil</h1>
-                        <p className={'flex grow items-center'}>
+                        <h1>Page d'accueil</h1>
+                        <p className={'flex grow items-center '}>
                             Êtes vous passionnés par les animés et Minecraft ? Alors ce serveur est fait pour vous !
                         </p>
                     </div>
-                    <Carousel className={'mx-auto w-3/4 py-30 md:py-0'}>
-                        <CarouselContent>
-                            {images.map((img, index) => (
-                                <CarouselItem key={index}>
-                                    <figure className={'relative h-full'}>
-                                        <img src={img.src} alt={img.name} className={'h-full w-full object-cover'} />
-                                        <figcaption className={'absolute right-0 bottom-0 left-0 bg-black/75 p-5'}>{img.name}</figcaption>
-                                    </figure>
-                                </CarouselItem>
-                            ))}
-                        </CarouselContent>
-                        <CarouselNext className={'cursor-pointer text-black'} />
-                        <CarouselPrevious className={'cursor-pointer text-black'} />
-                    </Carousel>
+                    <div className={"px-2 md:px-0"}>
+                        <Carousel className={'mx-auto w-3/4 py-30 md:py-0'}>
+                            <CarouselContent>
+                                {images.map((img, index) => (
+                                    <CarouselItem key={index}>
+                                        <figure className={'relative h-full'}>
+                                            <img src={img.src} alt={img.name} className={'h-full w-full object-cover'} />
+                                            <figcaption className={'absolute right-0 bottom-0 left-0 bg-black/75 p-5'}>{img.name}</figcaption>
+                                        </figure>
+                                    </CarouselItem>
+                                ))}
+                            </CarouselContent>
+                            <CarouselNext className={'cursor-pointer text-black'} />
+                            <CarouselPrevious className={'cursor-pointer text-black'} />
+                        </Carousel>
+                    </div>
                 </section>
-                <section id={'equipe'} className={'bg-white text-black'}>
+                <section id={'equipe'} className={'bg-white text-black border-b px-2 md:px-0'}>
                     <div className="container mx-auto pb-5">
                         <h1>Notre équipe</h1>
                         <div className={'mx-auto w-3/4 divide-y rounded-xl border text-center md:w-1/2'}>
                             {players.map((p, index) => (
                                 <div key={index} className={'grid grid-cols-2 divide-x'}>
-                                    <div className={'flex items-center justify-between p-5'}>
-                                        <img src={'https://mineskin.eu/helm/' + p.pseudo} className={'overflow-hidden'} alt={p.pseudo} width={100} />
+                                    <div className={'flex items-center justify-between p-5 gap-2'}>
+                                        <img src={'https://mineskin.eu/helm/' + p.pseudo} className={"w-1/4"} alt={p.pseudo} />
                                         <p>{p.pseudo}</p>
                                     </div>
                                     <p className={'flex items-center justify-center'}>{p.role}</p>
