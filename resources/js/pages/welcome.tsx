@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { Head } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
+import ContactForm from '@/components/contact-form';
 
 type ImageProps = {
     src: string;
@@ -71,6 +72,11 @@ export default function Welcome() {
                                 Notre équipe
                             </a>
                         </li>
+                        <li>
+                            <a href={'#contact'} className={'hover:underline'}>
+                                Nous contacter
+                            </a>
+                        </li>
                     </ul>
 
                     {/*Menu mobile*/}
@@ -78,19 +84,22 @@ export default function Welcome() {
                         <img src={'/images/burger-bar.svg'} alt={'Burger Bar'} className={'h-6.25'} />
                     </button>
                     <ul
-                        className={`${!showMenu && 'hidden'} fixed top-0 right-0 bottom-0 left-0 z-10 flex flex-col items-center justify-center bg-white md:hidden`}
-                        onClick={closeMenu}
+                        className={`${!showMenu && 'hidden'} fixed top-0 right-0 bottom-0 left-0 z-10 flex flex-col
+                         items-center justify-center bg-white md:hidden gap-3`}
                     >
-                        <Button className={'absolute top-5 right-5 bg-gray-300 active:bg-gray-400'}>
+                        <Button className={'absolute top-5 right-5 bg-gray-300 active:bg-gray-400'} onClick={closeMenu}>
                             <img src={'/images/croix.svg'} alt={'croix'} className={'w-6.25'} />
                         </Button>
                         <li>
-                            <a href={'#equipe'}>Notre équipe</a>
+                            <a href={'#equipe'} onClick={closeMenu}>Notre équipe</a>
+                        </li>
+                        <li>
+                            <a href={'#contact'} onClick={closeMenu}>Nous contacter</a>
                         </li>
                     </ul>
                 </nav>
             </header>
-            <main className={'flex grow flex-col gap-2 text-white md:block'}>
+            <main className={'flex grow flex-col text-white md:block'}>
                 <section className={'container mx-auto my-5 grid gap-2 p-2 md:my-20 md:grid-cols-2'}>
                     <div className={'flex flex-col justify-center gap-10 md:gap-0'}>
                         <h1>Page d'accueil</h1>
@@ -117,10 +126,10 @@ export default function Welcome() {
                         </Carousel>
                     </div>
                 </section>
-                <section id={'equipe'} className={'border-b bg-white px-2 text-black md:px-0'}>
-                    <div className="container mx-auto pb-5">
+                <section id={'equipe'} className={'px-2 text-black md:px-0 bg-white'}>
+                    <div className="container mx-auto py-5">
                         <h1>Notre équipe</h1>
-                        <div className={'mx-auto w-3/4 divide-y rounded-xl border text-center md:w-1/2'}>
+                        <div className={'mx-auto w-3/4 divide-y rounded-xl border text-center md:w-1/2 my-20'}>
                             {players.map((p, index) => (
                                 <div key={index} className={'grid grid-cols-2 divide-x'}>
                                     <div className={'flex items-center justify-between gap-2 p-5'}>
@@ -134,12 +143,18 @@ export default function Welcome() {
                         </div>
                     </div>
                 </section>
+                <section id={'contact'} className={"text-black bg-white shadow-2xl shadow-black px-2 md:px-0"}>
+                    <div className={"container mx-auto"}>
+                        <h1>Nous contacter</h1>
+                        <ContactForm/>
+                    </div>
+                </section>
             </main>
 
             {/*Bouton de retour au début*/}
             <Button onClick={() => window.scrollTo({ top: 0 })}
-                    className={`w-min border bg-white text-black hover:text-white fixed bottom-5 right-5 transition-opacity
-                    duration-300 ${visible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                    className={`w-min border bg-white text-black hover:text-white fixed bottom-3 right-3 transition-opacity
+                    cursor-pointer duration-300 ${visible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
             >
                 Retour au menu
             </Button>
