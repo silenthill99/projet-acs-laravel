@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection LaravelUnknownEloquentFactoryInspection */
 
 namespace App\Models;
 
