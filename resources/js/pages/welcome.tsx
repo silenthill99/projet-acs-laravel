@@ -1,8 +1,9 @@
 import { Button } from '@/components/ui/button';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
-import { Head } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 import ContactForm from '@/components/contact-form';
+import { SharedData } from '@/types';
 
 type ImageProps = {
     src: string;
@@ -15,6 +16,9 @@ type PlayerProps = {
 }
 
 export default function Welcome() {
+
+    const { auth } = usePage<SharedData>().props
+
     const [showMenu, setShowMenu] = useState(false);
     const [visible, setVisible] = useState(false);
 
@@ -66,6 +70,16 @@ export default function Welcome() {
                     <h1 className={'text-center'}>MineAnime</h1>
 
                     {/*Menu classique*/}
+                    {auth.user ? (
+                        <Link href={route('dashboard')} className={'hover:underline'}>Tableau de bord</Link>
+                    ) : (
+                        <div>
+                            <Link href={route('login')} className={'hover:underline'}>Se connecter</Link>
+                            <span className={"px-2"}>/</span>
+                            <Link href={route('register')} className={'hover:underline'}>Créer un compte</Link>
+                        </div>
+                    )}
+
                     <ul className={'hidden gap-3 text-xl md:flex'}>
                         <li>
                             <a href={'#equipe'} className={'hover:underline'}>
@@ -84,17 +98,20 @@ export default function Welcome() {
                         <img src={'/images/burger-bar.svg'} alt={'Burger Bar'} className={'h-6.25'} />
                     </button>
                     <ul
-                        className={`${!showMenu && 'hidden'} fixed top-0 right-0 bottom-0 left-0 z-10 flex flex-col
-                         items-center justify-center bg-white md:hidden gap-3`}
+                        className={`${!showMenu && 'hidden'} fixed top-0 right-0 bottom-0 left-0 z-10 flex flex-col items-center justify-center gap-3 bg-white md:hidden`}
                     >
                         <Button className={'absolute top-5 right-5 bg-gray-300 active:bg-gray-400'} onClick={closeMenu}>
                             <img src={'/images/croix.svg'} alt={'croix'} className={'w-6.25'} />
                         </Button>
                         <li>
-                            <a href={'#equipe'} onClick={closeMenu}>Notre équipe</a>
+                            <a href={'#equipe'} onClick={closeMenu}>
+                                Notre équipe
+                            </a>
                         </li>
                         <li>
-                            <a href={'#contact'} onClick={closeMenu}>Nous contacter</a>
+                            <a href={'#contact'} onClick={closeMenu}>
+                                Nous contacter
+                            </a>
                         </li>
                     </ul>
                 </nav>
@@ -113,10 +130,8 @@ export default function Welcome() {
                                 {images.map((img, index) => (
                                     <CarouselItem key={index}>
                                         <figure className={'relative h-full'}>
-                                            <img src={img.src} alt={img.name}
-                                                 className={'h-full w-full object-cover'} />
-                                            <figcaption
-                                                className={'absolute right-0 bottom-0 left-0 bg-black/75 p-5'}>{img.name}</figcaption>
+                                            <img src={img.src} alt={img.name} className={'h-full w-full object-cover'} />
+                                            <figcaption className={'absolute right-0 bottom-0 left-0 bg-black/75 p-5'}>{img.name}</figcaption>
                                         </figure>
                                     </CarouselItem>
                                 ))}
@@ -126,15 +141,14 @@ export default function Welcome() {
                         </Carousel>
                     </div>
                 </section>
-                <section id={'equipe'} className={'px-2 text-black md:px-0 bg-white'}>
+                <section id={'equipe'} className={'bg-white px-2 text-black md:px-0'}>
                     <div className="container mx-auto py-5">
                         <h1>Notre équipe</h1>
-                        <div className={'mx-auto w-3/4 divide-y rounded-xl border text-center md:w-1/2 my-20'}>
+                        <div className={'mx-auto my-20 w-3/4 divide-y rounded-xl border text-center md:w-1/2'}>
                             {players.map((p, index) => (
                                 <div key={index} className={'grid grid-cols-2 divide-x'}>
                                     <div className={'flex items-center justify-between gap-2 p-5'}>
-                                        <img src={'https://mineskin.eu/helm/' + p.pseudo} className={'w-1/4'}
-                                             alt={p.pseudo} />
+                                        <img src={'https://mineskin.eu/helm/' + p.pseudo} className={'w-1/4'} alt={p.pseudo} />
                                         <p>{p.pseudo}</p>
                                     </div>
                                     <p className={'flex items-center justify-center'}>{p.role}</p>
@@ -143,18 +157,18 @@ export default function Welcome() {
                         </div>
                     </div>
                 </section>
-                <section id={'contact'} className={"text-black bg-white shadow-2xl shadow-black px-2 md:px-0"}>
-                    <div className={"container mx-auto"}>
+                <section id={'contact'} className={'bg-white px-2 text-black shadow-2xl shadow-black md:px-0'}>
+                    <div className={'container mx-auto'}>
                         <h1>Nous contacter</h1>
-                        <ContactForm/>
+                        <ContactForm />
                     </div>
                 </section>
             </main>
 
             {/*Bouton de retour au début*/}
-            <Button onClick={() => window.scrollTo({ top: 0 })}
-                    className={`w-min border bg-white text-black hover:text-white fixed bottom-3 right-3 transition-opacity
-                    cursor-pointer duration-300 ${visible ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+            <Button
+                onClick={() => window.scrollTo({ top: 0 })}
+                className={`fixed right-3 bottom-3 w-min cursor-pointer border bg-white text-black transition-opacity duration-300 hover:text-white ${visible ? 'opacity-100' : 'pointer-events-none opacity-0'}`}
             >
                 Retour au menu
             </Button>
