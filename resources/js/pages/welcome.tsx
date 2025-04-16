@@ -134,6 +134,16 @@ export default function Welcome() {
                                 Comment jouer
                             </a>
                         </li>
+                        <li className={"text-sm absolute bottom-2 left-2"}>
+                            {auth.user ? (
+                                <Link href={route('dashboard')}>Profil</Link>
+                            ) : (
+                                <div>
+                                    <Link href={route('login')}>Se connecter</Link>
+                                    <Link href={route('register')}>Créer un compte</Link>
+                                </div>
+                            )}
+                        </li>
                     </ul>
                 </nav>
             </header>
