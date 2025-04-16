@@ -1,9 +1,9 @@
+import ContactForm from '@/components/contact-form';
 import { Button } from '@/components/ui/button';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
+import { SharedData } from '@/types';
 import { Head, Link, usePage } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
-import ContactForm from '@/components/contact-form';
-import { SharedData } from '@/types';
 
 type ImageProps = {
     src: string;
@@ -13,11 +13,10 @@ type ImageProps = {
 type PlayerProps = {
     pseudo: string;
     role: string;
-}
+};
 
 export default function Welcome() {
-
-    const { auth } = usePage<SharedData>().props
+    const { auth } = usePage<SharedData>().props;
 
     const [showMenu, setShowMenu] = useState(false);
     const [visible, setVisible] = useState(false);
@@ -40,23 +39,28 @@ export default function Welcome() {
     const images: ImageProps[] = [
         {
             src: '/images/ChatGPT%20Image%209%20avr.%202025,%2013_04_32.png',
-            name: 'Spawn du serveur'
+            name: 'Spawn du serveur',
         },
         {
             src: '/images/vogue-merry.jpg',
-            name: 'Vogue Merry'
+            name: 'Vogue Merry',
+        },
+        {
+            src: '/images/tour-celeste.webp',
+            name: "Tour céleste (Hunter X Hunter)"
         }
     ];
 
     const players: PlayerProps[] = [
         {
             pseudo: 'Florian002',
-            role: 'Fondateur'
-        }, {
+            role: 'Fondateur',
+        },
+        {
             pseudo: 'Elikill58',
-            role: 'Développeur'
-        }
-    ]
+            role: 'Développeur',
+        },
+    ];
 
     return (
         <section className={'font-roboto flex min-h-screen flex-col bg-amber-950'}>
@@ -71,12 +75,18 @@ export default function Welcome() {
 
                     {/*Menu classique*/}
                     {auth.user ? (
-                        <Link href={route('dashboard')} className={'hover:underline'}>Tableau de bord</Link>
+                        <Link href={route('dashboard')} className={'hidden hover:underline md:block'}>
+                            Tableau de bord
+                        </Link>
                     ) : (
-                        <div>
-                            <Link href={route('login')} className={'hover:underline'}>Se connecter</Link>
-                            <span className={"px-2"}>/</span>
-                            <Link href={route('register')} className={'hover:underline'}>Créer un compte</Link>
+                        <div className={'hidden md:block'}>
+                            <Link href={route('login')} className={'hover:underline'}>
+                                Se connecter
+                            </Link>
+                            <span className={'px-2'}>/</span>
+                            <Link href={route('register')} className={'hover:underline'}>
+                                Créer un compte
+                            </Link>
                         </div>
                     )}
 
@@ -91,6 +101,11 @@ export default function Welcome() {
                                 Nous contacter
                             </a>
                         </li>
+                        <li>
+                            <a href={'#jouer'} className={'hover:underline'}>
+                                Comment jouer ?
+                            </a>
+                        </li>
                     </ul>
 
                     {/*Menu mobile*/}
@@ -98,19 +113,25 @@ export default function Welcome() {
                         <img src={'/images/burger-bar.svg'} alt={'Burger Bar'} className={'h-6.25'} />
                     </button>
                     <ul
-                        className={`${!showMenu && 'hidden'} fixed top-0 right-0 bottom-0 left-0 z-10 flex flex-col items-center justify-center gap-3 bg-white md:hidden`}
+                        className={`${!showMenu && 'hidden'} fixed top-0 right-0 bottom-0 left-0 z-10 flex flex-col
+                        justify-center bg-white text-center md:hidden`}
                     >
                         <Button className={'absolute top-5 right-5 bg-gray-300 active:bg-gray-400'} onClick={closeMenu}>
                             <img src={'/images/croix.svg'} alt={'croix'} className={'w-6.25'} />
                         </Button>
-                        <li>
+                        <li className={'active:bg-gray-300 p-1.5'}>
                             <a href={'#equipe'} onClick={closeMenu}>
                                 Notre équipe
                             </a>
                         </li>
-                        <li>
+                        <li className={'active:bg-gray-300 p-1.5'}>
                             <a href={'#contact'} onClick={closeMenu}>
                                 Nous contacter
+                            </a>
+                        </li>
+                        <li className={'active:bg-gray-300 p-1.5'}>
+                            <a href={'#jouer'} onClick={closeMenu}>
+                                Comment jouer
                             </a>
                         </li>
                     </ul>
@@ -161,6 +182,16 @@ export default function Welcome() {
                     <div className={'container mx-auto'}>
                         <h1>Nous contacter</h1>
                         <ContactForm />
+                    </div>
+                </section>
+                <section id={'jouer'} className={'relative container mx-auto min-h-80 px-2'}>
+                    <h1>Comment jouer ?</h1>
+                    <div className={'absolute top-1/2 -translate-y-1/2 md:text-xl'}>
+                        <p>Pour jouer au serveur, il faut : </p>
+                        <ul className={'list-inside list-disc'}>
+                            <li className={'py-2'}>Minecraft 1.21 crack ON</li>
+                            <li>Adresse IP : 12.34.56.7889</li>
+                        </ul>
                     </div>
                 </section>
             </main>
