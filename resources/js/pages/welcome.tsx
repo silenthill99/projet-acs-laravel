@@ -26,6 +26,10 @@ export default function Welcome() {
             setVisible(window.scrollY > 10);
         };
         window.addEventListener('scroll', handleScroll);
+
+        return function() {
+            window.removeEventListener('scroll', handleScroll);
+        }
     }, []);
 
     function closeMenu() {
@@ -200,6 +204,7 @@ export default function Welcome() {
                         <p>Pour jouer au serveur, il faut : </p>
                         <ul className={'list-inside list-disc'}>
                             <li className={'py-2'}>Minecraft 1.21 crack ON</li>
+                            {/*L'adresse IP est fictive*/}
                             <li>Adresse IP : 12.34.56.7889</li>
                         </ul>
                     </div>
