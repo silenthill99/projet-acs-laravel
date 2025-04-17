@@ -138,11 +138,11 @@ export default function Welcome() {
                                 Comment jouer
                             </a>
                         </li>
-                        <li className={"text-sm absolute bottom-2 left-2"}>
+                        <li className={"text-sm absolute bottom-2 left-2 right-2 flex justify-center"}>
                             {auth.user ? (
                                 <Link href={route('dashboard')}>Profil</Link>
                             ) : (
-                                <div>
+                                <div className={"flex gap-2"}>
                                     <Link href={route('login')}>Se connecter</Link>
                                     <Link href={route('register')}>Créer un compte</Link>
                                 </div>
