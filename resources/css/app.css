@@ -80,6 +80,10 @@
     h1 {
         @apply text-xl md:text-5xl font-semibold py-2 md:py-5;
     }
+
+    h2 {
+        @apply text-xl md:text-4xl font-semibold py-2 md:py-5
+    }
 }
 
 :root {

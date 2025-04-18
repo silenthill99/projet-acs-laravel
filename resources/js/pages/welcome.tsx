@@ -4,6 +4,7 @@ import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious
 import { SharedData } from '@/types';
 import { Head, Link, usePage } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
+import Boutique from '@/components/boutique';
 
 type ImageProps = {
     src: string;
@@ -79,11 +80,11 @@ export default function Welcome() {
 
                     {/*Menu classique*/}
                     {auth.user ? (
-                        <Link href={route('dashboard')} className={'hidden hover:underline md:block'}>
+                        <Link href={route('dashboard')} className={'hidden hover:underline lg:block'}>
                             Tableau de bord
                         </Link>
                     ) : (
-                        <div className={'hidden md:block'}>
+                        <div className={'hidden lg:block'}>
                             <Link href={route('login')} className={'hover:underline'}>
                                 Se connecter
                             </Link>
@@ -94,7 +95,7 @@ export default function Welcome() {
                         </div>
                     )}
 
-                    <ul className={'hidden gap-3 text-xl md:flex'}>
+                    <ul className={'hidden gap-3 text-xl lg:flex'}>
                         <li>
                             <a href={'#equipe'} className={'hover:underline'}>
                                 Notre équipe
@@ -110,39 +111,48 @@ export default function Welcome() {
                                 Comment jouer ?
                             </a>
                         </li>
+                        <li>
+                            <a href={'#boutique'} className={'hover:underline'}>
+                                Boutique
+                            </a>
+                        </li>
                     </ul>
 
                     {/*Menu mobile*/}
-                    <button className={'p-5 md:hidden'} onClick={openMenu}>
+                    <button className={'p-5 lg:hidden'} onClick={openMenu}>
                         <img src={'/images/burger-bar.svg'} alt={'Burger Bar'} className={'h-6.25'} />
                     </button>
                     <ul
-                        className={`${!showMenu && 'hidden'} fixed top-0 right-0 bottom-0 left-0 z-10 flex flex-col
-                        justify-center bg-white text-center md:hidden`}
+                        className={`${!showMenu && 'hidden'} fixed top-0 right-0 bottom-0 left-0 z-10 flex flex-col justify-center bg-white text-center md:hidden`}
                     >
                         <Button className={'absolute top-5 right-5 bg-gray-300 active:bg-gray-400'} onClick={closeMenu}>
                             <img src={'/images/croix.svg'} alt={'croix'} className={'w-6.25'} />
                         </Button>
-                        <li className={'active:bg-gray-300 p-1.5'}>
+                        <li className={'p-1.5 active:bg-gray-300'}>
                             <a href={'#equipe'} onClick={closeMenu}>
                                 Notre équipe
                             </a>
                         </li>
-                        <li className={'active:bg-gray-300 p-1.5'}>
+                        <li className={'p-1.5 active:bg-gray-300'}>
                             <a href={'#contact'} onClick={closeMenu}>
                                 Nous contacter
                             </a>
                         </li>
-                        <li className={'active:bg-gray-300 p-1.5'}>
+                        <li className={'p-1.5 active:bg-gray-300'}>
                             <a href={'#jouer'} onClick={closeMenu}>
                                 Comment jouer
                             </a>
                         </li>
-                        <li className={"text-sm absolute bottom-2 left-2 right-2 flex justify-center"}>
+                        <li className={'p-1.5 active:bg-gray-300'}>
+                            <a href={'#boutique'} onClick={closeMenu}>
+                                Boutique
+                            </a>
+                        </li>
+                        <li className={'absolute right-2 bottom-2 left-2 flex justify-center text-sm'}>
                             {auth.user ? (
                                 <Link href={route('dashboard')}>Profil</Link>
                             ) : (
-                                <div className={"flex gap-2"}>
+                                <div className={'flex gap-2'}>
                                     <Link href={route('login')}>Se connecter</Link>
                                     <Link href={route('register')}>Créer un compte</Link>
                                 </div>
@@ -198,7 +208,7 @@ export default function Welcome() {
                         <ContactForm />
                     </div>
                 </section>
-                <section id={'jouer'} className={'relative container mx-auto min-h-80 px-2'}>
+                <section id={'jouer'} className={'relative container mx-auto min-h-80 px-2 md:px-0'}>
                     <h1>Comment jouer ?</h1>
                     <div className={'absolute top-1/2 -translate-y-1/2 md:text-xl'}>
                         <p>Pour jouer au serveur, il faut : </p>
@@ -209,6 +219,7 @@ export default function Welcome() {
                         </ul>
                     </div>
                 </section>
+                <Boutique />
             </main>
 
             {/*Bouton de retour au début*/}
