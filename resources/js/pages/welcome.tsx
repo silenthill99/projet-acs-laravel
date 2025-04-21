@@ -168,7 +168,7 @@ export default function Welcome() {
                         <p className={'flex grow items-center'}>
                             Êtes vous passionnés par les animés et Minecraft ? Alors ce serveur est fait pour vous !
                         </p>
-                        <p className={"text-2xl font-semibold uppercase py-3"}>Tout vos univers préférés dans un seul endroit</p>
+                        <p className={"text-2xl font-semibold uppercase py-10"}>Tout vos univers préférés dans un seul endroit</p>
                         <ul className={"list-disc list-inside"}>
                             <li>Hunter X Hunter</li>
                             <li>One piece</li>
