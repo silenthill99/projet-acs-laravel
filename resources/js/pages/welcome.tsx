@@ -168,6 +168,20 @@ export default function Welcome() {
                         <p className={'flex grow items-center'}>
                             Êtes vous passionnés par les animés et Minecraft ? Alors ce serveur est fait pour vous !
                         </p>
+                        <p className={"text-2xl font-semibold uppercase py-3"}>Tout vos univers préférés dans un seul endroit</p>
+                        <ul className={"list-disc list-inside"}>
+                            <li>Hunter X Hunter</li>
+                            <li>One piece</li>
+                            <li>Made in abyss</li>
+                            <li>Full metal alchemist</li>
+                            <li>Dragonball</li>
+                            <li>Naruto</li>
+                            <li>L'attaque des titans</li>
+                            <li>My hero academia</li>
+                            <li>Spy X Family</li>
+                            <li>Bocchi the rock</li>
+                            <li>etc.</li>
+                        </ul>
                     </div>
                     <div className={'px-2 md:px-0'}>
                         <Carousel className={'mx-auto w-3/4 py-30 md:py-0'}>
