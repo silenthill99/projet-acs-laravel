@@ -1,24 +1,15 @@
-import ContactForm from '@/components/contact-form';
 import { Button } from '@/components/ui/button';
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from '@/components/ui/carousel';
 import { SharedData } from '@/types';
 import { Head, Link, usePage } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 import Boutique from '@/components/boutique';
-
-type ImageProps = {
-    src: string;
-    name: string;
-};
-
-type PlayerProps = {
-    pseudo: string;
-    role: string;
-};
+import Equipe from '@/components/equipe';
+import Contact from '@/components/contact';
+import Jouer from '@/components/jouer';
+import Presentation from '@/components/Presentation';
 
 export default function Welcome() {
     const { auth } = usePage<SharedData>().props;
-
     const [showMenu, setShowMenu] = useState(false);
     const [visible, setVisible] = useState(false);
 
@@ -41,31 +32,6 @@ export default function Welcome() {
         return setShowMenu(true);
     }
 
-    const images: ImageProps[] = [
-        {
-            src: '/images/ChatGPT%20Image%209%20avr.%202025,%2013_04_32.png',
-            name: 'Spawn du serveur',
-        },
-        {
-            src: '/images/vogue-merry.jpg',
-            name: 'Vogue Merry',
-        },
-        {
-            src: '/images/tour-celeste.webp',
-            name: "Tour céleste (Hunter X Hunter)"
-        }
-    ];
-
-    const players: PlayerProps[] = [
-        {
-            pseudo: 'Florian002',
-            role: 'Fondateur',
-        },
-        {
-            pseudo: 'Elikill58',
-            role: 'Développeur',
-        },
-    ];
 
     return (
         <section className={'font-roboto flex min-h-screen flex-col bg-amber-950'}>
@@ -162,77 +128,10 @@ export default function Welcome() {
                 </nav>
             </header>
             <main className={'flex grow flex-col text-white md:block'}>
-                <section className={'container mx-auto my-5 grid gap-2 p-2 md:my-20 md:grid-cols-2'}>
-                    <div className={'flex flex-col justify-center gap-10 md:gap-0'}>
-                        <h1>Page d'accueil</h1>
-                        <p className={'flex grow items-center'}>
-                            Êtes vous passionnés par les animés et Minecraft ? Alors ce serveur est fait pour vous !
-                        </p>
-                        <p className={"text-2xl font-semibold uppercase py-10"}>Tout vos univers préférés dans un seul endroit</p>
-                        <ul className={"list-disc list-inside"}>
-                            <li>Hunter X Hunter</li>
-                            <li>One piece</li>
-                            <li>Made in abyss</li>
-                            <li>Full metal alchemist</li>
-                            <li>Dragonball</li>
-                            <li>Naruto</li>
-                            <li>L'attaque des titans</li>
-                            <li>My hero academia</li>
-                            <li>Spy X Family</li>
-                            <li>Bocchi the rock</li>
-                            <li>etc.</li>
-                        </ul>
-                    </div>
-                    <div className={'px-2 md:px-0'}>
-                        <Carousel className={'mx-auto w-3/4 py-30 md:py-0'}>
-                            <CarouselContent>
-                                {images.map((img, index) => (
-                                    <CarouselItem key={index}>
-                                        <figure className={'relative h-full'}>
-                                            <img src={img.src} alt={img.name} className={'h-full w-full object-cover'} />
-                                            <figcaption className={'absolute right-0 bottom-0 left-0 bg-black/75 p-5'}>{img.name}</figcaption>
-                                        </figure>
-                                    </CarouselItem>
-                                ))}
-                            </CarouselContent>
-                            <CarouselNext className={'cursor-pointer text-black'} />
-                            <CarouselPrevious className={'cursor-pointer text-black'} />
-                        </Carousel>
-                    </div>
-                </section>
-                <section id={'equipe'} className={'bg-white px-2 text-black md:px-0'}>
-                    <div className="container mx-auto py-5">
-                        <h1>Notre équipe</h1>
-                        <div className={'mx-auto my-20 w-3/4 divide-y rounded-xl border text-center md:w-1/2'}>
-                            {players.map((p, index) => (
-                                <div key={index} className={'grid grid-cols-2 divide-x'}>
-                                    <div className={'flex items-center justify-between gap-2 p-5'}>
-                                        <img src={'https://mineskin.eu/helm/' + p.pseudo} className={'w-1/4'} alt={p.pseudo} />
-                                        <p>{p.pseudo}</p>
-                                    </div>
-                                    <p className={'flex items-center justify-center'}>{p.role}</p>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-                <section id={'contact'} className={'bg-white px-2 text-black shadow-2xl shadow-black md:px-0'}>
-                    <div className={'container mx-auto'}>
-                        <h1>Nous contacter</h1>
-                        <ContactForm />
-                    </div>
-                </section>
-                <section id={'jouer'} className={'relative container mx-auto min-h-80 px-2 md:px-0'}>
-                    <h1>Comment jouer ?</h1>
-                    <div className={'absolute top-1/2 -translate-y-1/2 md:text-xl'}>
-                        <p>Pour jouer au serveur, il faut : </p>
-                        <ul className={'list-inside list-disc'}>
-                            <li className={'py-2'}>Minecraft 1.21 crack ON</li>
-                            {/*L'adresse IP est fictive*/}
-                            <li>Adresse IP : 12.34.56.7889</li>
-                        </ul>
-                    </div>
-                </section>
+                <Presentation />
+                <Equipe />
+                <Contact />
+                <Jouer />
                 <Boutique />
             </main>
 
