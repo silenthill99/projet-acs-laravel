@@ -32,9 +32,8 @@ export default function Welcome() {
         return setShowMenu(true);
     }
 
-
     return (
-        <section className={'font-roboto flex min-h-screen flex-col bg-amber-950'}>
+        <>
             <Head title="MineAnime">
                 <link rel="preconnect" href="https://fonts.bunny.net" />
                 <link href="https://fonts.bunny.net/css?family=instrument-sans:400,500,600" rel="stylesheet" />
@@ -142,6 +141,6 @@ export default function Welcome() {
             >
                 Retour au menu
             </Button>
-        </section>
+        </>
     );
 }
